@@ -163,7 +163,7 @@ test('the content cap tracks the window instead of stopping at a fixed width', (
 });
 
 test('the art is self-contained, described, used, and in Sophia colours only', async () => {
-  const palette = ['#FFFFFF', '#FCFCFD', '#B9BEC2', '#3F8A4F', '#DDDBD0', '#C4C2B7', '#83817A', '#F6F6F5', '#14140F', '#A14B3C', '#3F5D78', '#76845E', 'NONE'];
+  const palette = ['#FFFFFF', '#FCFCFD', '#B9BEC2', '#3F8A4F', '#DDDDDD', '#C4C4C4', '#838383', '#FFFFFF', '#141414', '#A14B3C', '#3F5D78', '#76845E', 'NONE'];
   for (const file of ART) {
     const svg = await readFile(file, 'utf8');
     assert.match(svg, /<title id="t">[^<]{12,}<\/title>/, `${file} describes itself`);
@@ -171,7 +171,7 @@ test('the art is self-contained, described, used, and in Sophia colours only', a
     for (const [, paint] of svg.matchAll(/\b(?:fill|stroke)="([^"]+)"/g)) assert.ok(palette.includes(paint.toUpperCase()), `${file}: ${paint}`);
   }
   for (const file of ART) assert.ok(home.includes(`src="${file}"`), `${file} is on the home page`);
-  assert.ok(legal.includes('src="art/mark.svg"'));
+  assert.ok(legal.includes('src="icon-512.png"'));
   assert.doesNotMatch(html + css, /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u, 'no emoji anywhere');
 });
 
@@ -187,5 +187,21 @@ test('every page credits "Built by DC Labs, a Daniel J. Cuesta company"', async 
   for (const page of [home, legal]) {
     assert.match(page, /<strong>Sophia<\/strong><br>Built by DC Labs, a Daniel J\. Cuesta company\./);
     assert.doesNotMatch(page, /with(&nbsp;|\s)Claude\b(?! Code)/);
+  }
+});
+
+test('every brand placement uses Lady Wisdom on white surfaces', async () => {
+  assert.match(css, /--paper:#ffffff; --paper-2:#f5f5f5/);
+  assert.match(css, /\.brand img,\.footer-brand img \{ background:transparent; \}/);
+  assert.doesNotMatch(html, /art\/mark\.svg/);
+  for (const page of Object.values(pages)) {
+    assert.match(page, /class="brand"[^>]*><img src="icon-512.png"/);
+    assert.match(page, /class="footer-brand"><img src="icon-512.png"/);
+  }
+  assert.match(home, /class="lead-art" src="icon-512.png"/);
+  assert.match(home, /name="theme-color" content="#ffffff"/);
+  for (const file of ['favicon.png','apple-touch-icon.png','icon-512.png']) {
+    const png = await readFile(file);
+    assert.equal(png.subarray(1,4).toString(), 'PNG');
   }
 });
