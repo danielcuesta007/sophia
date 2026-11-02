@@ -20,3 +20,6 @@ platform-macos/.build/
 dist/
 assets/Sophia.iconset/
 assets/icon.html
+
+# Cloudflare wrangler local state
+.wrangler/

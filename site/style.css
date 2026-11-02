@@ -1,10 +1,10 @@
-/* Sophia: marble and ink. Warm marble paper, ink type, one sage-green accent from the mark (#3F8A4F).
+/* Sophia: white and ink, with one sage-green accent from the Lady Wisdom mark (#76845E).
    The three mark colours (terra = spelling, lapis = grammar, sage = word choice) are the product's own
-   and appear only on marks, never as decoration. Night mode is ink paper with marble type.
+   and appear only on marks, never as decoration. Night mode is ink paper with white type.
    Layout and accessibility rules follow the Cadence site so DC Labs pages behave alike. */
 :root {
-  --paper:#f6f6f5; --paper-2:#efeeea; --ink:#14140f; --muted:#54534b; --line:#dddbd0; --card:#ffffff;
-  --accent:#3f8a4f; --accent-text:#2f6b3c; --accent-ink:#ffffff; --accent-soft:#e6efe6; --shadow:0 2px 18px -8px rgba(20,20,15,.22); --shadow-long:28px 40px 80px -40px rgba(20,20,15,.32);
+  --paper:#ffffff; --paper-2:#f5f5f5; --ink:#141414; --muted:#545454; --line:#dddddd; --card:#ffffff;
+  --accent:#5f6c4a; --accent-text:#5f6c4a; --accent-ink:#ffffff; --accent-soft:#edf0e8; --shadow:0 2px 18px -8px rgba(20,20,15,.22); --shadow-long:28px 40px 80px -40px rgba(20,20,15,.32);
   --terra:#a14b3c; --lapis:#3f5d78; --sage:#5f6c4a;
   --print:#ffffff;
   --serif:"Iowan Old Style","New York","Palatino Linotype",Georgia,serif;
@@ -17,8 +17,8 @@
 @media (min-width:1800px) { :root { --max:min(1640px, calc(100vw - 2 * var(--gutter))); } }
 @media (min-width:2400px) { :root { --max:min(1840px, calc(100vw - 2 * var(--gutter))); } }
 @media (prefers-color-scheme:dark) {
-  :root { --paper:#14140f; --paper-2:#1b1b16; --ink:#f3f2ee; --muted:#b5b3a8; --line:#33332b; --card:#1f1f19;
-    --accent:#8fc59a; --accent-text:#8fc59a; --accent-ink:#14140f; --accent-soft:#25301f; --shadow:0 2px 18px -8px rgba(0,0,0,.6); --shadow-long:28px 40px 80px -40px rgba(0,0,0,.7);
+  :root { --paper:#141414; --paper-2:#1b1b1b; --ink:#ffffff; --muted:#b5b5b5; --line:#333333; --card:#1f1f1f;
+    --accent:#b4c290; --accent-text:#b4c290; --accent-ink:#141414; --accent-soft:#25301f; --shadow:0 2px 18px -8px rgba(0,0,0,.6); --shadow-long:28px 40px 80px -40px rgba(0,0,0,.7);
     --terra:#e08a78; --lapis:#8fb0cf; --sage:#b4c290; }
 }
 *,*::before,*::after { box-sizing:border-box; }
@@ -40,7 +40,7 @@ code { font-size:.88em; }
 .preview-note b { font:700 11px/1 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:var(--accent-text); margin-right:8px; }
 .site-header { position:sticky; top:0; z-index:5; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
   padding:10px var(--gutter); background:color-mix(in srgb,var(--paper) 88%,transparent); backdrop-filter:saturate(1.4) blur(12px); -webkit-backdrop-filter:saturate(1.4) blur(12px); border-bottom:1px solid var(--line); }
-.brand img,.footer-brand img { background:var(--print); border-radius:10px; }
+.brand img,.footer-brand img { background:transparent; }
 .brand { display:flex; align-items:center; gap:10px; text-decoration:none; font:500 25px/1 var(--serif); letter-spacing:-.01em; color:var(--ink); }
 .site-header nav { display:flex; gap:clamp(12px,3vw,28px); align-items:center; flex-wrap:wrap; font:600 13px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase; }
 .site-header nav a { text-decoration:none; color:var(--muted); min-height:44px; display:inline-flex; align-items:center; }
@@ -113,10 +113,10 @@ kbd { display:inline-flex; align-items:center; min-height:28px; padding:0 8px; m
 .feature-grid p { color:var(--muted); margin:10px 0 0; }
 .feature-grid li:last-child { grid-column:span 2; }
 .feature-lead { grid-column:span 3; display:grid; grid-template-columns:auto minmax(0,1fr); gap:clamp(20px,4vw,44px); align-items:center;
-  background:var(--accent) !important; color:var(--accent-ink); padding:clamp(24px,4vw,44px) !important; box-shadow:var(--shadow-long); }
-.lead-art { width:clamp(120px,16vw,200px); height:auto; border-radius:50%; }
-.feature-lead h3 { font-size:clamp(28px,3.2vw,38px); color:var(--accent-ink); }
-.feature-lead p { color:var(--accent-ink) !important; opacity:.9; font-size:19px; max-width:62ch; }
+  background:var(--accent-soft) !important; color:var(--ink); padding:clamp(24px,4vw,44px) !important; box-shadow:var(--shadow-long); }
+.lead-art { width:clamp(120px,16vw,200px); height:auto; }
+.feature-lead h3 { font-size:clamp(28px,3.2vw,38px); color:var(--ink); }
+.feature-lead p { color:var(--ink) !important; opacity:.9; font-size:19px; max-width:62ch; }
 
 /* Two surfaces */
 .surface-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
@@ -142,7 +142,7 @@ thead .us { color:var(--accent-text) !important; }
 /* Download */
 .download-grid { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(24px,4vw,56px); align-items:start; }
 .download-card { position:relative; border:1px solid var(--line); border-radius:24px; padding:clamp(24px,4vw,40px); background:var(--card); text-align:center; box-shadow:var(--shadow-long); }
-.download-card img { margin:0 auto 24px; border-radius:26px; }
+.download-card img { margin:0 auto 24px; }
 .download-card .button { width:100%; }
 .small { color:var(--muted); font-size:14px; }
 .download-card pre { text-align:left; }
