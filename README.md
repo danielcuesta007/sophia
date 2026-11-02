@@ -86,6 +86,10 @@ sentence, on demand.
 npx wrangler pages deploy site/dist --project-name sophia-writing --branch main
 ```
 
+If your Cloudflare login sees more than one account, Wrangler stops with "More than one account
+available". Set `CLOUDFLARE_ACCOUNT_ID` to the account that owns the `sophia-writing` project
+(`npx wrangler whoami` lists them) and run the deploy again.
+
 ## Requirements
 
 - macOS 14+ (measured on macOS 26, Apple Silicon)
