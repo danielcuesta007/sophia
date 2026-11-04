@@ -10,7 +10,7 @@ const js = await readFile('site.js', 'utf8');
 const headers = await readFile('_headers', 'utf8');
 const ART = (await readdir('art')).filter(f => f.endsWith('.svg')).sort().map(f => `art/${f}`);
 const SHIPPED = ['index.html', 'legal.html', 'style.css', 'site.js', 'favicon.png', 'apple-touch-icon.png', 'icon-512.png', '_headers', ...ART];
-const OUTBOUND = /^https:\/\/(github\.com\/danieljcuesta007\/(sophia|cadence)(\/|#|$)|danielcuesta007\.com$|addisuna\.com$|skeptic\.pages\.dev$|cadence-dictation\.pages\.dev$|www\.grammarly\.com\/(plans|privacy-policy)$|languagetool\.org\/premium$|github\.com\/languagetool-org\/languagetool$|support\.apple\.com\/)/;
+const OUTBOUND = /^https:\/\/(github\.com\/danielcuesta007\/(sophia|cadence)(\/|#|$)|danielcuesta007\.com$|addisuna\.com$|skeptic\.pages\.dev$|cadence-dictation\.pages\.dev$|www\.grammarly\.com\/(plans|privacy-policy)$|languagetool\.org\/premium$|github\.com\/languagetool-org\/languagetool$|support\.apple\.com\/)/;
 const README = await readFile('../README.md', 'utf8');
 
 test('internal links and fragments resolve, IDs are unique per page', () => {
@@ -30,7 +30,7 @@ test('internal links and fragments resolve, IDs are unique per page', () => {
 
 test('links into the repo README point at headings that exist', () => {
   const anchors = new Set([...README.matchAll(/^#+ (.+)$/gm)].map(m => m[1].toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/ /g, '-')));
-  for (const [, frag] of html.matchAll(/href="https:\/\/github\.com\/danieljcuesta007\/sophia#([^"]+)"/g)) assert.ok(anchors.has(frag), `README has no #${frag}`);
+  for (const [, frag] of html.matchAll(/href="https:\/\/github\.com\/danielcuesta007\/sophia#([^"]+)"/g)) assert.ok(anchors.has(frag), `README has no #${frag}`);
 });
 
 test('local assets exist and nothing loads from another origin', async () => {
@@ -67,7 +67,7 @@ test('the site never promises a Mac download that does not exist', () => {
   assert.match(home, /There's no download yet/);
   assert.match(home, /In development/);
   assert.doesNotMatch(html, /\.dmg|brew install|Download for Mac|notarized|App Store|Web Store listing/i);
-  assert.match(home, /href="https:\/\/github\.com\/danieljcuesta007\/sophia\/archive\/refs\/heads\/main\.zip"/);
+  assert.match(home, /href="https:\/\/github\.com\/danielcuesta007\/sophia\/archive\/refs\/heads\/main\.zip"/);
   for (const step of ['chrome://extensions', 'Developer mode', 'Load unpacked', 'extension › sophia']) assert.ok(home.includes(step), step);
 });
 
@@ -204,4 +204,8 @@ test('every brand placement uses Lady Wisdom on white surfaces', async () => {
     const png = await readFile(file);
     assert.equal(png.subarray(1,4).toString(), 'PNG');
   }
+});
+
+test('no page or README links to the retired danieljcuesta007 GitHub handle (renamed 2 Nov 2026)', () => {
+  for (const [name, text] of [...Object.entries(pages), ['README.md', README]]) assert.ok(!/danieljcuesta007/i.test(text), name);
 });

@@ -3,7 +3,7 @@
 Daniel selected the Lady Wisdom and open-book mark created for the DC Labs
 GitHub profile on 30 October 2026. It replaces the older green S.
 
-Original source: `danieljcuesta007/danieljcuesta007`, commit
+Original source: `danielcuesta007/danielcuesta007`, commit
 `64c10590b83a44dd4701be4542dd03a6f778130f`,
 `icons/sophia-lady-wisdom.png`.
 
