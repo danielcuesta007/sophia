@@ -1,4 +1,4 @@
-// Vendored verbatim from Cadence (github.com/danieljcuesta007/cadence, MIT),
+// Vendored verbatim from Cadence (github.com/danielcuesta007/cadence, MIT),
 // platform-macos/Insertion/Sources/CadenceInsertion/InsertionEngine.swift @ 87377c6.
 // Blueprint §12.3: reuse as-is — do not fork behavior here; fix upstream first.
 
