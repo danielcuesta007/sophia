@@ -120,7 +120,7 @@ available". Set `CLOUDFLARE_ACCOUNT_ID` to the account that owns the `sophia-wri
 ## Attribution
 
 The insertion engine is vendored verbatim from
-[Cadence](https://github.com/danieljcuesta007/cadence) (MIT). Grammar checking by
+[Cadence](https://github.com/danielcuesta007/cadence) (MIT). Grammar checking by
 [Harper](https://crates.io/crates/harper-core) (Apache-2.0).
 
 ---
